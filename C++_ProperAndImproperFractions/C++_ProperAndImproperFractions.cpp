@@ -1,26 +1,31 @@
 #include <iostream>
 
+
+bool GCD(long n, long d)
+{
+    while (n != d)
+        if (n > d)
+            n -= d;
+        else
+            d -= n;
+
+
+    if (n == 1)
+        return true;
+    else
+        return false;
+}
+
 long long properFractions(long long d) 
 {
-    int counter = 0;
+
+    long counter = 0;
 
     for (long n = 1; n < d; n++)
     {
-        long i = 1;
-        bool chk = false;
+        if (GCD(n, d) == true)
+            counter++;
 
-        do
-        {
-            i++;
-            chk = false;
-            if (n % i != 0 && d % i != 0)
-            {
-                counter++;
-                chk = true;
-            }
-            
-        }
-        while (i == n || chk == true);
     }
 
     return counter;
